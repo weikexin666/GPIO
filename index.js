@@ -10,7 +10,7 @@ http.createServer((req, res) => {
     res.writeHead(200, {'Access-Control-Allow-Origin': '*', 'Content-Type': 'text/html'});
     trigger(req.url);
     if (req.url == '/index') {
-        fs.writeFile('./index.html', (err, data) => {
+        fs.readFile('./index.html', (err, data) => {
             if (err) {
                 console.log(err);
                 return;
