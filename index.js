@@ -1,5 +1,6 @@
 const http = require('http');
 const rpio = require('rpio');
+const fs = require('fs');
 rpio.open(11, rpio.OUTPUT);
 
 http.createServer((req, res) => {
@@ -8,6 +9,14 @@ http.createServer((req, res) => {
     }
     res.writeHead(200, {'Access-Control-Allow-Origin': '*', 'Content-Type': 'text/html'});
     trigger(req.url);
+    fs.writeFile('./index.html', (err ,data) => {
+        if (err) {
+           console.log(err);
+           return;
+        }
+        res.end(data.toString());
+        return;
+    })
     res.end('Hello')
 }).listen(1314);
 console.log('run ok');
