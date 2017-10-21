@@ -16,8 +16,8 @@ http.createServer((req, res) => {
                 return;
             }
             res.end(data.toString());
-            return;
         })
+        return;
     }
     res.end('Hello')
 }).listen(1314);
